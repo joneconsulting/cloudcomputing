@@ -16,6 +16,12 @@ def selectList():
 
     return cursor.fetchall()
 
+def deleteMember(userId:str):
+    deleteSql = '''DELETE FROM member WHERE id=%s'''
+    cursor.execute(deleteSql, (userId,))
+    conn.commit()
+    print('회원이 삭제 되었습니다.')
+
 def main():
     print('#' * 50)
     print('# 회원 관리 프로그램 ver 0.1')
@@ -36,7 +42,9 @@ def main():
         elif cmd == 3:
             print("회원 추가 입니다.")
         elif cmd == 4:
-            print("회원 삭제 입니다.")
+            print("<회원 삭제>")
+            userId = input("삭제할 멤버의 아이디를 입력하세요 -> ")
+            deleteMember(userId)
         elif cmd == 5:
             cursor.close()
             conn.close()
