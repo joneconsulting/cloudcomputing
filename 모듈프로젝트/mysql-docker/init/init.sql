@@ -1,0 +1,1 @@
+CREATE TABLE member(userid int, pwd varchar(10));
